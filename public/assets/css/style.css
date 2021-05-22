@@ -1,0 +1,10 @@
+.border {
+  border: 1px solid #dee2e6!important;
+  min-width: 80%;
+  padding: 15px;
+}
+
+.btn {
+  margin: 10px;
+}
+
