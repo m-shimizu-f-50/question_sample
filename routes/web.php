@@ -19,3 +19,5 @@ Route::get('/', function () {
 Route::resource('/questions', 'QuestionController');
 
 Route::resource('answer', 'AnswersController', ['only' => ['store']]);
+
+Route::get('/question', 'QuestionController@index');

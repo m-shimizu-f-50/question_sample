@@ -11,11 +11,15 @@
 <body>
     <div class="container mt-3">
         <h1>質問リスト</h1>
-    </div>
-    <div class="container mt-4 mb-4">
-        <a href="{{ route('questions.create') }}" class="btn btn-primary">
-            投稿の新規作成
-        </a>
+        <form action="{{url('/questions')}}" method="GET">
+            <div class="form-inline">
+                <input type="text" name="keyword" class="form-control col-8" value="{{$keyword}}" placeholder="検索キーワード">
+                <input type="submit" value="検索" class="btn btn-success">
+                <a href="{{ route('questions.create') }}" class="btn btn-primary">
+                    投稿の新規作成
+                </a>
+            </div>
+        </form>
     </div>
     <div class="container mt-3">
         @foreach ($questions as $question)
@@ -35,12 +39,12 @@
             <div class="row">
                 <p class="border">{{ $question->question }}</p>
                 <form action="{{ route('questions.edit', $question->id)}}">
-                    <input type="submit" value="修正" class="btn btn-primary btn">
+                    <input type="submit" value="修正" class="btn btn-warning">
                 </form>
                 <form action="{{ route('questions.destroy', $question->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <input type="submit" value="削除" class="btn btn-danger btn">
+                    <input type="submit" value="削除" class="btn btn-danger ">
                 </form>
             </div>
         </div>
