@@ -9,6 +9,7 @@ class Question extends Model
     //
     protected $fillable = [
         'question',
+        'name',
     ];
 
     /**

@@ -9,16 +9,21 @@
     <link href="{{asset('/assets/css/style.css')}}" rel="stylesheet">
 </head>
 <body>
-    <div class="container mt-3">
-        <h1>質問リスト - 編集</h1>
-    </div>
-    <div class="container mt-3">
-        <div class="container mb-4">
-            {!! Form::open(['route' => ['questions.update', $question->id], 'method' => 'POST']) !!}
-            {{ csrf_field() }}
-            {{ method_field('PUT') }}
-                <div class="row">
-                    {{ Form::text('updateQuestion', $question->question, ['class' => 'form-control col-7 mr-4']) }}
+    <div class="container mt-4">
+        <div class="border p-4">
+            <h1 class="h4 mb-4 font-weight-bold">質問投稿 - 編集</h1>
+            <form action="{{ route('questions.update', $question->id)}}" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('PUT') }}
+                <fieldset class="mb-4">
+                    <div class="form-group">
+                        <label for="subject">名前</label>
+                        <input type="text" name="name" value="{{ $name->name}}" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">質問内容</label>
+                        <input type="text" name="updateQuestion" value="{{ $question->question}}" class="form-control">
+                    </div>
                     <div class="form-group">
                         <label for="status">状態</label>
                         <select name="status" id="status" class="form-control">
@@ -32,14 +37,17 @@
                         @endforeach
                         </select>
                     </div>
-                    {{ Form::submit('更新', ['class' => 'btn btn-primary mr-3']) }}
-                    <a href="{{ route('questions.index') }}" class="btn btn-danger">戻る</a>
-                </div>
-            {!! Form::close() !!}
+                    <div class="mt-5">
+                        <a class="btn btn-secondary" href="{{ route('questions.index') }}">
+                            キャンセル
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            投稿する
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
         </div>
-        @if ($errors->has('updateQuestion'))
-            <p class="alert alert-danger">{{ $errors->first('updateQuestion') }}</p>
-        @endif
     </div>
 </body>
 </html>
