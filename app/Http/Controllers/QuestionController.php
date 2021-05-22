@@ -26,7 +26,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        return view('questions.create');
     }
 
     /**
@@ -42,10 +42,16 @@ class QuestionController extends Controller
             'newQuestion'     => 'required|max:100',
         ]);
 
-        Question::create([
-            'question'     => $request->newQuestion,
-            'status' => $request->newStatus,
-        ]);
+        // Question::create([
+        //     'question'     => $request->newQuestion,
+        //     'status' => $request->newStatus,
+        // ]);
+
+        $question = new \App\Question;
+
+        $question->question = $request->newQuestion;
+
+        $question->save();
 
         return redirect()->route('questions.index');
     }
