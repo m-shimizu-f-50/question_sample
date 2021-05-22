@@ -11,10 +11,23 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $questions = Question::get();
-        return view('questions.index',[
+
+        //キーワード受け取り
+        $keyword = $request->input('keyword');
+        //クエリ生成
+        $query = Question::query();
+        //もしキーワードがあったら
+        if(!empty($keyword))
+        {
+            $query->where('name','LIKE',"%{$keyword}%")->orWhere('question','LIKE',"%{$keyword}%")->orWhere('status','LIKE',"%{$keyword}%");
+        }
+
+        $questions = $query->get();
+
+        return view('questions.index',compact('questions','keyword'),[
             'questions' => $questions,
         ]);
     }
