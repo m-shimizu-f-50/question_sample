@@ -29,7 +29,7 @@
             </form>
             <!-- 投稿情報 -->
             <div class="summary">
-                <p><span class="label {{ $question->status_class }}">{{ $question->status_label }}</span> / <time>{{ $question->updated_at->format('Y.m.d H:i') }}</time> / 横花太郎 </p>
+                <p><span class="label {{ $question->status_class }}">{{ $question->status_label }}</span> / <time>{{ $question->updated_at->format('Y.m.d H:i') }}</time> / {{$question->name}} </p>
             </div>
             <!-- 本文 -->
             <div class="row">

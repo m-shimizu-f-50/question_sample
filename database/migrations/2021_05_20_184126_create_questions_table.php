@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->text('question');
             $table->integer('status')->default();
             $table->timestamps();
+            $table->string('name');
         });
     }
 

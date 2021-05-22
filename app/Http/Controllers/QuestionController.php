@@ -42,14 +42,10 @@ class QuestionController extends Controller
             'newQuestion'     => 'required|max:100',
         ]);
 
-        // Question::create([
-        //     'question'     => $request->newQuestion,
-        //     'status' => $request->newStatus,
-        // ]);
-
         $question = new \App\Question;
 
         $question->question = $request->newQuestion;
+        $question->name = $request->newName;
 
         $question->save();
 
@@ -91,9 +87,9 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $question = Question::find($id);
-        
         return view('questions.edit', [
             'question' => $question,
+            'name' => $question,
         ]);
     }
 
@@ -112,7 +108,8 @@ class QuestionController extends Controller
 
         $question = Question::find($id);
 
-        $question->question     = $request->updateQuestion;
+        $question->question = $request->updateQuestion;
+        $question->name = $request->name;
         $question->status = $request->status;
 
         $question->save();

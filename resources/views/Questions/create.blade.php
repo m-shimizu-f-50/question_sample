@@ -18,6 +18,10 @@
                 @csrf
                 <fieldset class="mb-4">
                     <div class="form-group">
+                        <label for="subject">名前</label>
+                        <input type="text" name="newName" value="{{old('newName')}}" class="form-control">
+                    </div>
+                    <div class="form-group">
                         <label for="subject">質問内容</label>
                         <input type="text" name="newQuestion" value="{{old('newQuestion')}}" class="form-control">
                         @if ($errors->has('newQuestion'))
