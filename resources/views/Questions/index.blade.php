@@ -12,20 +12,12 @@
     <div class="container mt-3">
         <h1>質問リスト</h1>
     </div>
+    <div class="container mt-4 mb-4">
+        <a href="{{ route('questions.create') }}" class="btn btn-primary">
+            投稿の新規作成
+        </a>
+    </div>
     <div class="container mt-3">
-        <div class="container mb-4">
-            <form action="{{ route('questions.store')}}" method="POST">
-                @csrf
-                <div class="row">
-                    <input type="text" name="newQuestion" value="{{old('newQuestion')}}" class="form-control col-8 mr-5">
-                    <input type="submit" value="新規登録" class="btn btn-primary">
-                </div>
-            </form>
-        </div>
-        @if ($errors->has('newQuestion'))
-            <p class="alert alert-danger">{{ $errors->first('newQuestion') }}</p>
-        @endif
-
         @foreach ($questions as $question)
         <div class="border p-4">
             <form action="{{ route('answer.store')}}" method="POST">
